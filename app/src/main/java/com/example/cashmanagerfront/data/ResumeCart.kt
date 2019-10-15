@@ -2,6 +2,7 @@ package com.example.cashmanagerfront.data
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.cashmanagerfront.R
 
 class ResumeCart : AppCompatActivity() {
 
