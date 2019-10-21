@@ -18,8 +18,9 @@
         app:layout_constraintVertical_bias="0.024"
         app:srcCompat="@drawable/warehouse_cart48" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button"
+        style="@style/Widget.Cashback.Button"
         android:layout_width="108dp"
         android:layout_height="48dp"
         android:layout_marginBottom="16dp"
@@ -29,8 +30,9 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button2"
+        style="@style/Widget.Cashback.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -40,6 +42,22 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button" />
 
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="4dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.924"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/imageButton2">-->
+
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/editText"-->
+<!--            android:inputType="textPersonName"-->
+<!--            android:text="@android:string/search_go" />-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
     <EditText
         android:id="@+id/editText"
         android:layout_width="318dp"
@@ -69,7 +87,7 @@
         android:id="@+id/tableLayout"
         android:layout_width="389dp"
         android:layout_height="520dp"
-        android:theme="@style/AppTheme"
+        android:theme="@style/Theme.Cashback"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
