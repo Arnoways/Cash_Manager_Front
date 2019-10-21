@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cashback">
         <activity android:name=".ChoosePayementType"></activity>
-        <activity android:name=".data.ResumeCart" />
+        <activity android:name=".ResumeCart" />
         <activity android:name=".ProductList" />
         <activity
             android:name=".ui.login.LoginActivity"

@@ -1,4 +1,4 @@
-package com.example.cashmanagerfront.data
+package com.example.cashmanagerfront
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
