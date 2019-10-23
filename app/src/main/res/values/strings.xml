@@ -13,9 +13,11 @@
     <string name="label_product">Product</string>
     <string name="label_product_name">Name</string>
     <string name="label_product_price">Price</string>
+    <string name="action_back_products">Go back to products</string>
     <!-- Strings related to a cart -->
     <string name="label_cart">Cart</string>
     <string name="action_cart_empty">Empty cart</string>
+    <string name="action_check_cart">Check cart</string>
     <!-- Strings related to payment -->
     <string name="action_payment_proceed">Proceed to payment</string>
     <string name="status_payment_pending">Payment pending</string>
