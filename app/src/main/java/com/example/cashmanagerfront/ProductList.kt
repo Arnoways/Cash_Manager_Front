@@ -17,12 +17,13 @@ class ProductList : AppCompatActivity() {
         setContentView(R.layout.activity_product_list)
 
         var productList: MutableList<Product> = ProductDataSource().loadProducts()
-        Log.d("DEBUG", productList.toString())
+        System.out.println("Product list : " + productList.toString())
         // get Table Layout
         var tableLayout: TableLayout = findViewById(R.id.tableLayout)
 
         var index = 0
         while(index < productList.size) {
+            System.out.println("Index de la boucle :" + index)
             // create a row
             var row: TableRow = TableRow(this)
             // parameters for the row

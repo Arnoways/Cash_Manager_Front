@@ -31,8 +31,10 @@
 
     <TableLayout
         android:id="@+id/tableLayout"
-        android:layout_width="527dp"
+        android:layout_width="0dp"
         android:layout_height="873dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:theme="@style/Theme.Cashback"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
