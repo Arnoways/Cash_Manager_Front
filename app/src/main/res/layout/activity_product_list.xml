@@ -35,6 +35,7 @@
         android:layout_height="873dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
+        android:divider="@drawable/border"
         android:theme="@style/Theme.Cashback"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -44,13 +45,17 @@
         <TableRow>
 
             <TextView
-                android:layout_width="50dp"
+                style="@style/textViewStyle"
+                android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:layout_weight="1"
                 android:background="@color/colorPrimaryDark"
+                android:drawableBottom="@drawable/border"
+                android:singleLine="true"
                 android:text="@string/label_product_name"
-                android:textColor="#FFFFFFFF"
-                android:textSize="24sp" />
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="normal" />
 
             <TextView
                 android:layout_width="50dp"
