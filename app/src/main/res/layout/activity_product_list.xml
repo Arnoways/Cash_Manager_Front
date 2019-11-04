@@ -1,118 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductList">
-
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.926"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.024"
-        app:srcCompat="@drawable/shopping_cart" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button"
-        style="@style/Widget.Cashback.Button"
-        android:layout_width="108dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="16dp"
-        android:text="X"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button2"
-        style="@style/Widget.Cashback.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="V"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button" />
-
-<!--    <EditText-->
-<!--        android:id="@+id/editText"-->
-<!--        android:layout_width="318dp"-->
-<!--        android:layout_height="41dp"-->
-<!--        android:ems="10"-->
-<!--        android:inputType="textPersonName"-->
-<!--        android:text="@android:string/search_go"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.924"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/imageButton2" />-->
+    android:padding="10dp"
+    android:visibility="visible"
+    tools:context=".ProductList"
+    tools:visibility="visible">
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.Cashback.TextInputLayout"
         android:id="@+id/searchTextLayout"
+        style="@style/Widget.Cashback.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.924"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/searchText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@android:string/search_go"
-            android:inputType="text" />
+            android:inputType="text"
+            android:visibility="visible" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="41dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
-        app:layout_constraintEnd_toStartOf="@+id/searchTextLayout"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.988"
-        app:srcCompat="@drawable/shopping_bag_search48" />
-
     <TableLayout
         android:id="@+id/tableLayout"
-        android:layout_width="389dp"
-        android:layout_height="520dp"
+        android:layout_width="0dp"
+        android:layout_height="873dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:divider="@drawable/border"
         android:theme="@style/Theme.Cashback"
-        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchTextLayout">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        <TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            <TextView
+                style="@style/textViewStyle"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
+                android:drawableBottom="@drawable/border"
+                android:singleLine="true"
+                android:text="@string/label_product_name"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="normal" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            <TextView
+                android:layout_width="50dp"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
+                android:text="@string/label_product_price"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
+        </TableRow>
     </TableLayout>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_check_cart"
+        style="@style/Widget.Cashback.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/action_check_cart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

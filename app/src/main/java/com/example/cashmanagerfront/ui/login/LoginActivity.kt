@@ -1,6 +1,7 @@
 package com.example.cashmanagerfront.ui.login
 
 import android.app.Activity
+import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -14,6 +15,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import com.example.cashmanagerfront.ProductList
 
 import com.example.cashmanagerfront.R
 
@@ -56,8 +58,8 @@ class LoginActivity : AppCompatActivity() {
                 showLoginFailed(loginResult.error)
             }
             if (loginResult.success != null) {
-//                updateUiWithUser(loginResult.success)
-                setContentView(R.layout.activity_product_list)
+//                updateUiWithUser(loginResult.success
+                startActivity(Intent(this, ProductList::class.java))
             }
             setResult(Activity.RESULT_OK)
 

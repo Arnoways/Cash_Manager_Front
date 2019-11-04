@@ -68,4 +68,11 @@
         <item name="android:background">@color/colorAccent</item>
     </style>
 
+    <style name="textViewStyle">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:textColor">@color/colorSecondaryDark</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>
