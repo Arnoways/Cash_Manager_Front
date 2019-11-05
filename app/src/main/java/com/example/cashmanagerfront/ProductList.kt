@@ -1,6 +1,7 @@
 package com.example.cashmanagerfront
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +13,7 @@ import com.example.cashmanagerfront.data.model.Product
 
 import android.util.Log
 import android.util.TypedValue
+import android.widget.Button
 import androidx.core.view.setPadding
 
 class ProductList : AppCompatActivity() {
@@ -20,6 +22,12 @@ class ProductList : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_list)
+
+        // add onclick on go to cart button
+        var buttonGoToCart = findViewById<Button>(R.id.button_check_cart)
+        buttonGoToCart.setOnClickListener {
+            startActivity(Intent(this, ResumeCart::class.java))
+        }
 
         var productList: MutableList<Product> = ProductDataSource(this).loadProducts()
         System.out.println("Product list : " + productList.toString())

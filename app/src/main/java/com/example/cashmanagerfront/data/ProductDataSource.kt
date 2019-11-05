@@ -22,7 +22,6 @@ class ProductDataSource(var myActivity: Activity) {
         line = br.readLine()
         while (line != null) {
             val datas: List<String> = line.split(";")
-            System.out.println(datas.toString())
             products.add(Product(datas[0].toInt(), datas[1], datas[2].toDouble()))
             line = br.readLine()
         }
