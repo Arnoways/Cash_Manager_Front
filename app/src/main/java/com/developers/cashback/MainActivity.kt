@@ -3,6 +3,7 @@ package com.developers.cashback
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import java.util.logging.Logger
+import com.example.cashmanagerfront.R
 
 class MainActivity : AppCompatActivity() {
 

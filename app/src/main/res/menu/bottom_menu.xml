@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/item1"
+        android:title="Item 1"
+        app:showAsAction="ifRoom|withText"/>
+    <group android:id="@+id/group">
+        <item android:id="@+id/group_item1"
+            android:onClick="onGroupItemClick"
+            android:title="Group Item 1" />
+        <item android:id="@+id/group_item2"
+            android:onClick="onGroupItemClick"
+            android:title="Group Item 2" />
+    </group>
+    <item android:id="@+id/submenu"
+        android:title="Submenu Title"
+        app:showAsAction="ifRoom|withText" >
+        <menu>
+            <item android:id="@+id/submenu_item1"
+                android:title="Submenu Item 1" />
+        </menu>
+    </item>
+
+</menu>

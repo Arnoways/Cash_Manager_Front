@@ -9,4 +9,21 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <!-- Strings related to a product -->
+    <string name="label_product">Product</string>
+    <string name="label_product_name">Name</string>
+    <string name="label_product_price">Price</string>
+    <string name="action_back_products">Go back to products</string>
+    <!-- Strings related to a cart -->
+    <string name="label_cart">Cart</string>
+    <string name="action_cart_empty">Empty cart</string>
+    <string name="action_check_cart">Check cart</string>
+    <string name="label_total_ht">Total H.T.</string>
+    <string name="label_total_ttc">Total T.T.C.</string>
+    <!-- Strings related to payment -->
+    <string name="action_payment_proceed">Proceed to payment</string>
+    <string name="status_payment_pending">Payment pending</string>
+    <string name="status_payment_done">Payment done</string>
+    <string name="status_payment_cancelled">Payment cancelled</string>
+    <string name="status_payment_error">Error during the payment</string>
 </resources>

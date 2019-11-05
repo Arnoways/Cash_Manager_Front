@@ -1,0 +1,11 @@
+0;"Macbook pro 2019";1000.0
+1;"Bière Kwak";6.5
+2;"Trotinette électrique Voltor X345 Gz";540.5
+3;"Kretek cigarettes";1.5
+4;"Dildo pleasure max auto-lubrifiant";1349.69
+5;"Iphone 13 pro max";3000.0
+6;"Fidget spinner pour autiste";5
+7;"Lot de cable rj45 x 42";42
+8;"Album musiques mondaines VOL12";20.67
+9;"Un rein";699.99
+10;"Poupée gonflable";46

@@ -4,105 +4,136 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".data.ResumeCart">
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="55dp"
-        android:layout_height="57dp"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:color/holo_green_light" />
-
-    <TableLayout
-        android:id="@+id/tableLayout3"
-        android:layout_width="355dp"
-        android:layout_height="359dp"
-        app:layout_constraintBottom_toTopOf="@+id/tableLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </TableLayout>
-
-    <TableLayout
-        android:id="@+id/tableLayout2"
-        android:layout_width="353dp"
-        android:layout_height="181dp"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout3">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </TableLayout>
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#FF0015"
-        android:text="X"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button4"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout2" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#42FF00"
-        android:text="V"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button3"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout2" />
+    tools:context=".ResumeCart">
 
     <TextView
-        android:id="@+id/Cart"
-        android:layout_width="104dp"
-        android:layout_height="42dp"
-        android:text="Cart"
+        android:id="@+id/textViewCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="@string/label_cart"
+        android:textColor="@color/colorSecondaryDark"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/tableLayoutBillDetail"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.388"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        tools:layout_editor_absoluteY="29dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/colorSecondaryLight"
+        android:padding="10dp"
+        android:text="@string/action_back_products"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@color/colorSecondaryLight"
+        android:padding="10dp"
+        android:text="@string/action_cart_empty"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.71"
+        app:layout_constraintStart_toEndOf="@+id/buttonBack" />
+
+    <Button
+        android:id="@+id/buttonPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:background="@color/colorPrimary"
+        android:padding="10dp"
+        android:text="@string/action_payment_proceed"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/buttonBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow2"
+        app:layout_constraintVertical_bias="0.8" />
+
+    <TableLayout
+        android:id="@+id/tableLayoutBillDetail"
+        android:layout_width="346dp"
+        android:layout_height="402dp"
+        android:layout_marginBottom="27dp"
+        android:divider="@drawable/border"
+        app:layout_constraintBottom_toTopOf="@id/tableRow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCart"
+        app:layout_constraintVertical_bias="0.247">
+
+    </TableLayout>
+
+    <TableRow
+        android:id="@+id/tableRow"
+        android:layout_width="346dp"
+        android:layout_height="45dp"
+        android:divider="@drawable/border"
+        app:layout_constraintBottom_toTopOf="@id/tableRow2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayoutBillDetail">
+
+        <TextView
+            android:id="@+id/textTotalHt"
+            android:layout_width="237dp"
+            android:layout_height="match_parent"
+            android:text="@string/label_total_ht"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/numberTotalHt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="346dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="9dp"
+        android:divider="@drawable/border"
+        app:layout_constraintBottom_toTopOf="@id/buttonPayment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/textTotalTtc"
+            android:layout_width="237dp"
+            android:layout_height="match_parent"
+            android:text="@string/label_total_ttc"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/numberTotalTtc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+    </TableRow>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

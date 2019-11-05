@@ -1,6 +1,7 @@
 package com.example.cashmanagerfront.ui.login
 
 import android.app.Activity
+import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -14,6 +15,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import com.example.cashmanagerfront.ProductList
 
 import com.example.cashmanagerfront.R
 
@@ -56,12 +58,13 @@ class LoginActivity : AppCompatActivity() {
                 showLoginFailed(loginResult.error)
             }
             if (loginResult.success != null) {
-                updateUiWithUser(loginResult.success)
+//                updateUiWithUser(loginResult.success
+                startActivity(Intent(this, ProductList::class.java))
             }
             setResult(Activity.RESULT_OK)
 
             //Complete and destroy login activity once successful
-            finish()
+            //finish()
         })
 
         username.afterTextChanged {
@@ -106,6 +109,8 @@ class LoginActivity : AppCompatActivity() {
             "$welcome $displayName",
             Toast.LENGTH_LONG
         ).show()
+
+        // set content view to product list
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
