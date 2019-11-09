@@ -17,7 +17,7 @@ RUN mkdir -p ${ANDROID_HOME} && \
 
 ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools
 
-RUN yes | sdkmanager --licenses
+RUN yes | sdkmanager --licenses > /dev/null
 
 RUN sdkmanager 'platform-tools'
 RUN sdkmanager 'platforms;android-29'
