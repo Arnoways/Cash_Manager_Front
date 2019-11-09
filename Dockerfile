@@ -19,10 +19,10 @@ ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}
 
 RUN yes | sdkmanager --licenses > /dev/null
 
-RUN sdkmanager 'platform-tools'
-RUN sdkmanager 'platforms;android-29'
-RUN sdkmanager 'build-tools;29.0.0'
-RUN sdkmanager 'extras;m2repository;com;android;support;constraint;constraint-layout;1.0.0'
+RUN sdkmanager 'platform-tools' > /dev/null
+RUN sdkmanager 'platforms;android-29' > /dev/null
+RUN sdkmanager 'build-tools;29.0.0' > /dev/null
+RUN sdkmanager 'extras;m2repository;com;android;support;constraint;constraint-layout;1.0.0' > /dev/null
 
 WORKDIR /app/
 ENTRYPOINT [ "./gradlew", "--quiet", "--parallel", "--build-cache", "build"]
