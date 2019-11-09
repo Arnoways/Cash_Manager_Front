@@ -12,7 +12,7 @@ USER appuser
 RUN mkdir -p ${ANDROID_HOME} && \
     cd ${ANDROID_HOME} && \
     wget -q ${SDK_URL} -O android_tools.zip && \
-    unzip android_tools.zip && \
+    unzip -qq android_tools.zip && \
     rm android_tools.zip
 
 ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools
@@ -25,5 +25,5 @@ RUN sdkmanager 'build-tools;29.0.0'
 RUN sdkmanager 'extras;m2repository;com;android;support;constraint;constraint-layout;1.0.0'
 
 WORKDIR /app/
-ENTRYPOINT [ "./gradlew", "--parallel", "--build-cache", "build"]
+ENTRYPOINT [ "./gradlew", "--quiet", "--parallel", "--build-cache", "build"]
 #ENTRYPOINT [ "./gradlew", "--no-daemon", "clean"]
