@@ -76,7 +76,7 @@
 
     <style name="textViewStyle">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:textColor">@color/colorSecondaryDark</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
         <item name="android:singleLine">false</item>
         <item name="android:textStyle">bold</item>
     </style>
