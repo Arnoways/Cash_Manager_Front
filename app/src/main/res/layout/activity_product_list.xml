@@ -25,7 +25,17 @@
             android:layout_height="wrap_content"
             android:hint="@android:string/search_go"
             android:inputType="text"
-            android:visibility="visible" />
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tableProductsLabel"
+            style="@android:style/Widget.Holo.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Products"
+            android:textColor="@color/colorSecondary"
+            android:textSize="30sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -34,37 +44,74 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:divider="@drawable/border"
+        android:scrollbarStyle="insideOverlay"
+        android:scrollbars="horizontal"
         android:theme="@style/Theme.Cashback"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchTextLayout">
 
-        <TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tableNameLabel"
                 style="@style/textViewStyle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:layout_weight="1"
+                android:layout_weight="4"
+                android:width="50dp"
                 android:background="@color/colorPrimaryDark"
                 android:drawableBottom="@drawable/border"
                 android:singleLine="true"
                 android:text="@string/label_product_name"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/textColorSecondary"
                 android:textSize="24sp"
                 android:textStyle="normal" />
 
             <TextView
-                android:layout_width="50dp"
+                android:id="@+id/tablePriceLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_column="1"
                 android:layout_weight="1"
                 android:background="@color/colorPrimaryDark"
                 android:text="@string/label_product_price"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/textColorSecondary"
                 android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/tableActionLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
+                android:text="Action"
+                android:textColor="@color/textColorSecondary"
+                android:textSize="24sp" />
+
         </TableRow>
     </TableLayout>
+
+    <ScrollView
+        android:id="@+id/scrollLayout1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_check_cart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tableLayout"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout">
+
+        <LinearLayout
+            android:id="@+id/scrollLinearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_check_cart"
