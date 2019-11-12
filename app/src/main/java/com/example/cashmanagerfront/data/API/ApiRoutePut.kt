@@ -3,7 +3,7 @@ package com.example.cashmanagerfront.data.API
 import com.android.volley.Request
 
 
-sealed class ApiRoute {
+sealed class ApiRoutePut {
 
     private val apiKey: String
         get() {
@@ -44,7 +44,7 @@ sealed class ApiRoute {
 
     val httpMethod: Int
         get() {
-            return Request.Method.GET
+            return Request.Method.PUT
         }
 
     val params: HashMap<String, String>
@@ -77,15 +77,15 @@ sealed class ApiRoute {
             }
         }
 
-    data class GetAllProducts(var page: Int) : ApiRoute()
+    data class GetAllProducts(var page: Int) : ApiRoutePut()
 
-    data class GetProductById(var productId: String) : ApiRoute()
+    data class GetProductById(var productId: String) : ApiRoutePut()
 
-    data class GetCartById(var cartId: String) : ApiRoute()
+    data class GetCartById(var cartId: String) : ApiRoutePut()
 
-    data class GetUserById(var userId: String) : ApiRoute()
+    data class GetUserById(var userId: String) : ApiRoutePut()
 
-    data class DownloadImage(var imageUrl: String, var fileSize: String) : ApiRoute()
+    data class DownloadImage(var imageUrl: String, var fileSize: String) : ApiRoutePut()
 
-    data class SortProductBy(var query: String, var page: Int) : ApiRoute()
+    data class SortProductBy(var query: String, var page: Int) : ApiRoutePut()
 }
