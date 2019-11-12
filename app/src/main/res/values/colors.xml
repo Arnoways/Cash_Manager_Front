@@ -3,14 +3,17 @@
     <color name="colorPrimary">#03A9F4</color>
     <color name="colorPrimaryDark">#007AC1</color>
     <color name="colorPrimaryLight">#67daff</color>
-    <color name="colorSecondary">#311b92</color>
+    <color name="colorPrimaryPastel">#d9f2fa</color>
+    <color name="colorSecondary">#311B92</color>
     <color name="colorSecondaryLight">#6746C3</color>
+    <color name="colorSecondaryPastel">#dfd7f5</color>
     <color name="colorSecondaryDark">#000063</color>
     <color name="colorAccent">#FEDBD0</color>
     <color name="textColorPrimary">#000000</color>
-    <color name="textColorSecondary">#ffffff</color>
+    <color name="textColorSecondary">#FFFFFF</color>
     <color name="toolbarIconColor">@color/textColorPrimary</color>
     <color name="loginPageBackgroundColor">#FFFFFF</color>
     <color name="productGridBackgroundColor">#FFFBFA</color>
     <color name="textInputOutlineColor">#03a9f4</color>
+    <color name="transparent">#FFFFFF</color>
 </resources>
