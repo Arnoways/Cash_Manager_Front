@@ -5,16 +5,21 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TableLayout
-import android.widget.TableRow
-import android.widget.TextView
 import com.example.cashmanagerfront.data.ProductDataSource
 import com.example.cashmanagerfront.data.model.Product
 
 import android.util.Log
 import android.util.TypedValue
-import android.widget.Button
+import android.widget.*
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.setPadding
+import android.view.ViewGroup.LayoutParams.FILL_PARENT
+import android.widget.ScrollView
+import android.widget.LinearLayout
+
+
+
+
 
 class ProductList : AppCompatActivity() {
 
@@ -30,33 +35,80 @@ class ProductList : AppCompatActivity() {
         }
 
         var productList: MutableList<Product> = ProductDataSource(this).loadProducts()
-        System.out.println("Product list : " + productList.toString())
         // get Table Layout
-        var tableLayout: TableLayout = findViewById(R.id.tableLayout)
+        var tableView: LinearLayout = findViewById(R.id.scrollLinearLayout1)
 
+        generateTable(productList, tableView)
+    }
+
+    @SuppressLint("NewApi")
+    fun generateTable(products: MutableList<Product>, view: LinearLayout) {
         var index = 0
-        while(index < productList.size) {
+        while(index < products.size) {
             // create a row
-            var row: TableRow = TableRow(this)
+            val row = LinearLayout(this)
             // parameters for the row
-            val lp = TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT)
-            row.setLayoutParams(lp)
-            // create the textviews
-            val tvname = TextView(this)
-            val tvprice = TextView(this)
+            val rowLayoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            row.setLayoutParams(rowLayoutParams)
+            row.setPadding(5)
+            row.setHorizontalGravity(0)
+            row.setVerticalGravity(1)
+
+            if (index % 2 == 0) {
+                row.setBackgroundResource(R.color.colorPrimaryPastel)
+            } else {
+                row.setBackgroundResource(R.color.colorSecondaryPastel)
+            }
+
+            // create the table row subcomponents
+            val nameView = TextView(this)
+            val priceView = TextView(this)
+            val addButton = Button(this)
+            val removeButton = Button(this)
+            val buttonLayout = LinearLayout(this)
+
+            // set buttons
+            addButton.setText("+")
+            removeButton.setText("-")
+            buttonLayout.addView(addButton)
+            buttonLayout.addView(removeButton)
+
+            buttonLayout.orientation = LinearLayout.VERTICAL
+
             // set the text values
-            tvname.setText(productList[index].name)
-            tvprice.setText(productList[index].price.toString())
+            nameView.setText(products[index].name.toString())
+            priceView.setText(products[index].price.toString())
+
             // stylish text view
-            tvname.setTextAppearance(R.style.textViewStyle)
-            tvprice.setTextAppearance(R.style.textViewStyle)
+            nameView.setTextAppearance(R.style.textViewStyle)
+            priceView.setTextAppearance(R.style.textViewStyle)
+            nameView.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM)
+            priceView.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM)
+
+
+            nameView.setLayoutParams(LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                0.75F
+            ))
+            priceView.setLayoutParams(LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                1F
+            ))
+            buttonLayout.setLayoutParams(LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                1F
+            ))
+
             // add it to our row
-            row.addView(tvname, 0)
-            row.addView(tvprice,1)
+            row.addView(nameView)
+            row.addView(priceView)
+            row.addView(buttonLayout)
             // add row to our table
-            tableLayout.addView(row, index+1)
+            view.addView(row)
             index++
         }
-
     }
 }
