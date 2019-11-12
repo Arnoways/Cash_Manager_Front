@@ -21,18 +21,18 @@
         android:paddingTop="16dp">
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.Cashback.TextInputLayout"
             android:id="@+id/usernameLayout"
+            style="@style/Widget.Cashback.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/prompt_email"
-            android:inputType="textEmailAddress"
-            android:selectAllOnFocus="true" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_email"
+                android:inputType="textEmailAddress"
+                android:selectAllOnFocus="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
