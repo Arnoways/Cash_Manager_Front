@@ -23,7 +23,5 @@ RUN sdkmanager 'extras;m2repository;com;android;support;constraint;constraint-la
 
 WORKDIR /app/
 
-COPY entrypoint.sh .
-
-ENTRYPOINT [ "/app/entrypoint.sh" ]
+ENTRYPOINT [ "gradlew", "--quiet", "--parallel", "--build-cache assemble" ]
 #ENTRYPOINT [ "./gradlew", "--no-daemon", "clean"]
