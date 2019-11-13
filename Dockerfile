@@ -23,5 +23,5 @@ RUN sdkmanager 'extras;m2repository;com;android;support;constraint;constraint-la
 
 WORKDIR /app/
 
-ENTRYPOINT [ "gradlew", "--quiet", "--parallel", "--build-cache assemble" ]
+ENTRYPOINT [ "./gradlew", "--quiet", "--parallel", "--build-cache assemble" ]
 #ENTRYPOINT [ "./gradlew", "--no-daemon", "clean"]
