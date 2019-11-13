@@ -48,4 +48,8 @@ object Cart {
 
         return orders
     }
+
+    fun empty() {
+        products.clear()
+    }
 }

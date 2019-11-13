@@ -66,7 +66,7 @@ class ProductList : AppCompatActivity() {
             val nameView = TextView(this)
             val priceView = TextView(this)
             val addButton = Button(this)
-            val removeButton = Button(this)
+//            val removeButton = Button(this)
             val buttonLayout = LinearLayout(this)
 
             // add event listener to buttons
@@ -76,35 +76,35 @@ class ProductList : AppCompatActivity() {
                     Toast.makeText(
                         this,
                         "Product added to cart",
-                        Toast.LENGTH_LONG
+                        Toast.LENGTH_SHORT
                     ).show()
                 }
             }
-            removeButton.setOnClickListener {
-                var ret = Cart.remove(product)
-                if (ret == true) {
-                    Toast.makeText(
-                        this,
-                        "Product removed from cart",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-            }
+//            removeButton.setOnClickListener {
+//                var ret = Cart.remove(product)
+//                if (ret == true) {
+//                    Toast.makeText(
+//                        this,
+//                        "Product removed from cart",
+//                        Toast.LENGTH_LONG
+//                    ).show()
+//                }
+//            }
 
             // set buttons
             addButton.setText("+")
-            removeButton.setText("-")
+//            removeButton.setText("-")
             buttonLayout.addView(addButton)
-            buttonLayout.addView(removeButton)
+//            buttonLayout.addView(removeButton)
 
             addButton.id = Math.random().toInt()
-            removeButton.id = Math.random().toInt()
+//            removeButton.id = Math.random().toInt()
 
             buttonLayout.orientation = LinearLayout.VERTICAL
 
             // set the text values
             nameView.setText(products[index].name.toString())
-            priceView.setText(products[index].price.toString())
+            priceView.setText("%.2f".format(products[index].price))
 
             // stylish text view
             nameView.setTextAppearance(R.style.textViewStyle)
@@ -138,13 +138,5 @@ class ProductList : AppCompatActivity() {
             view.addView(row)
             index++
         }
-    }
-
-    fun addProductCart(product: Product) {
-
-    }
-
-    fun removeProductCart(product: Product) {
-
     }
 }
