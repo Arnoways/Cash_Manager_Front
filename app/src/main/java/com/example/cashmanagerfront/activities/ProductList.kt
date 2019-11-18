@@ -22,14 +22,14 @@ class ProductList : AppCompatActivity() {
         setContentView(R.layout.activity_product_list)
 
         // add onclick on go to cart button
-        var buttonGoToCart = findViewById<Button>(R.id.button_check_cart)
+        var buttonGoToCart = findViewById<Button>(R.id.productListButtonCheckCart)
         buttonGoToCart.setOnClickListener {
             startActivity(Intent(this, ResumeCart::class.java))
         }
 
         var productList: MutableList<Product> = ProductDataSource(this).loadProducts()
         // get Table Layout
-        var tableView: LinearLayout = findViewById(R.id.scrollLinearLayout1)
+        var tableView: LinearLayout = findViewById(R.id.productListScrollLinearLayout)
 
         generateTable(productList, tableView)
     }

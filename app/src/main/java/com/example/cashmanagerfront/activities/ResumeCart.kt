@@ -18,21 +18,21 @@ class ResumeCart : AppCompatActivity() {
         setContentView(R.layout.activity_resume_cart)
 
         // add onclick on go to cart button
-        buttonBack.setOnClickListener {
+        resumeCartButtonBack.setOnClickListener {
             startActivity(Intent(this, ProductList::class.java))
         }
 
         // add onclick on empty cart button
-        buttonEmpty.setOnClickListener{
+        resumeCartButtonEmpty.setOnClickListener{
             // empty cart
             Cart.empty()
 
             // remove orders in the view
-            cartScrollLinearLayout.removeAllViewsInLayout()
+            resumeCartScrollLinearLayout.removeAllViewsInLayout()
 
             // set the total ht and total ttc
-            numberTotalHt.setText("0.00")
-            numberTotalTtc.setText("0.00")
+            resumeCartTableRow1TotalHTNumber.setText("0.00")
+            resumeCartTableRow2TotalTTCNumber.setText("0.00")
 
             Toast.makeText(
                 this,
@@ -95,15 +95,15 @@ class ResumeCart : AppCompatActivity() {
             row.addView(quantityView)
             row.addView(priceView)
 
-            cartScrollLinearLayout.addView(row)
+            resumeCartScrollLinearLayout.addView(row)
 
             totalHt += order.price
 
         }
 
         // add price ht to number view
-        numberTotalHt.setText("%.2f".format(totalHt))
+        resumeCartTableRow1TotalHTNumber.setText("%.2f".format(totalHt))
         // add price ttc to number view
-        numberTotalTtc.setText("%.2f".format(totalHt * 1.20))
+        resumeCartTableRow2TotalTTCNumber.setText("%.2f".format(totalHt * 1.20))
     }
 }
