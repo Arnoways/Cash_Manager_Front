@@ -11,6 +11,7 @@
     <string name="login_failed">"Login failed"</string>
     <!-- Strings related to a product -->
     <string name="label_product">Product</string>
+    <string name="label_products">Products</string>
     <string name="label_product_name">Name</string>
     <string name="label_product_price">Price</string>
     <string name="label_product_quantity">Quantity</string>

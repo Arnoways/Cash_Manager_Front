@@ -59,16 +59,17 @@ class ProductList : AppCompatActivity() {
 
             // create the table row subcomponents
             val nameView = TextView(this)
+            val priceView = TextView(this)
             val quantityView = TextView(this)
             val addButton = Button(this)
 //            val removeButton = Button(this)
-            val buttonLayout = LinearLayout(this)
+            val textLayout = LinearLayout(this)
 
             // add event listener to buttons
             addButton.setOnClickListener {
                 var ret = Cart.add(product)
-                quantityView.setText((quantityView.getText().toString().toInt() + 1).toString())
                 if (ret == true) {
+                    quantityView.setText((quantityView.getText().toString().toInt() + 1).toString())
                     Toast.makeText(
                         this,
                         "Product added to cart",
@@ -76,6 +77,7 @@ class ProductList : AppCompatActivity() {
                     ).show()
                 }
             }
+
 //            removeButton.setOnClickListener {
 //                var ret = Cart.remove(product)
 //                if (ret == true) {
@@ -87,36 +89,40 @@ class ProductList : AppCompatActivity() {
 //                }
 //            }
 
+            // set the text values
+            nameView.setText(product.name.toString())
+            quantityView.setText(Cart.countProducts(product).toString())
+            priceView.setText("Price : %.2f".format(product.price))
+
+            textLayout.addView(nameView)
+            textLayout.addView(priceView)
+
             // set buttons
             addButton.setText("+")
 //            removeButton.setText("-")
-            buttonLayout.addView(addButton)
 //            buttonLayout.addView(removeButton)
 
 
 //            removeButton.id = Math.random().toInt()
 
-            buttonLayout.orientation = LinearLayout.VERTICAL
+            textLayout.orientation = LinearLayout.VERTICAL
 
-            // set the text values
-            nameView.setText(products[index].name.toString())
-            quantityView.setText("0")
-//            priceView.setText("%.2f".format(products[index].price))
-
-            // set the text view id
+            // set the components id
             nameView.id = Math.random().toInt()
+            priceView.id = Math.random().toInt()
             quantityView.id = Math.random().toInt()
             addButton.id = Math.random().toInt()
-            buttonLayout.id = Math.random().toInt()
 
             // stylish text view
             nameView.setTextAppearance(R.style.textViewStyle)
+            priceView.setTextAppearance(R.style.textViewStyle)
             quantityView.setTextAppearance(R.style.textViewStyle)
             nameView.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM)
+            priceView.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM)
             quantityView.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM)
 
             // set the layout params
-            nameView.setLayoutParams(LinearLayout.LayoutParams(
+            textLayout.setLayoutParams(LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 0.75F
@@ -126,16 +132,11 @@ class ProductList : AppCompatActivity() {
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 1F
             ))
-            buttonLayout.setLayoutParams(LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                1F
-            ))
 
             // add it to our row
-            row.addView(nameView)
+            row.addView(textLayout)
             row.addView(quantityView)
-            row.addView(buttonLayout)
+            row.addView(addButton)
 
             // add row to our table
             view.addView(row)

@@ -48,6 +48,15 @@ object Cart {
         return orders
     }
 
+    fun countProducts(product: Product): Int {
+        var c = 0
+        if (products.contains(product)) {
+            c = products.count { it -> it.id == product.id }
+        }
+
+        return c
+    }
+
     fun empty() {
         products.clear()
     }
