@@ -1,22 +1,17 @@
-package com.example.cashmanagerfront
+package com.example.cashmanagerfront.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.cashmanagerfront.data.ProductDataSource
-import com.example.cashmanagerfront.data.model.Product
+import com.example.cashmanagerfront.datasources.ProductDataSource
+import com.example.cashmanagerfront.models.Product
 
-import android.util.Log
-import android.util.TypedValue
 import android.widget.*
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.setPadding
-import android.view.ViewGroup.LayoutParams.FILL_PARENT
-import android.widget.ScrollView
 import android.widget.LinearLayout
-import com.example.cashmanagerfront.data.manager.Cart
+import com.example.cashmanagerfront.R
+import com.example.cashmanagerfront.objects.Cart
 
 
 class ProductList : AppCompatActivity() {

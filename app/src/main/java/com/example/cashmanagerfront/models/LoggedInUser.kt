@@ -1,4 +1,4 @@
-package com.example.cashmanagerfront.data.model
+package com.example.cashmanagerfront.models
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository

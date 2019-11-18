@@ -1,9 +1,9 @@
-package com.example.cashmanagerfront.ui.login
+package com.example.cashmanagerfront.activities.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.cashmanagerfront.data.LoginDataSource
-import com.example.cashmanagerfront.data.LoginRepository
+import com.example.cashmanagerfront.datasources.LoginDataSource
+import com.example.cashmanagerfront.repositories.LoginRepository
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.

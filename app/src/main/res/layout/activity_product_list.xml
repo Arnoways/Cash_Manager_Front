@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="10dp"
     android:visibility="visible"
-    tools:context=".ProductList"
+    tools:context=".activities.ProductList"
     tools:visibility="visible">
 
     <com.google.android.material.textfield.TextInputLayout

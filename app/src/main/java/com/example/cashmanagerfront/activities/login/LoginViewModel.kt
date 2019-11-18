@@ -1,11 +1,11 @@
-package com.example.cashmanagerfront.ui.login
+package com.example.cashmanagerfront.activities.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Patterns
-import com.example.cashmanagerfront.data.LoginRepository
-import com.example.cashmanagerfront.data.Result
+import com.example.cashmanagerfront.repositories.LoginRepository
+import com.example.cashmanagerfront.helpers.Result
 
 import com.example.cashmanagerfront.R
 

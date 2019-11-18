@@ -1,6 +1,8 @@
-package com.example.cashmanagerfront.data
+package com.example.cashmanagerfront.repositories
 
-import com.example.cashmanagerfront.data.model.LoggedInUser
+import com.example.cashmanagerfront.datasources.LoginDataSource
+import com.example.cashmanagerfront.helpers.Result
+import com.example.cashmanagerfront.models.LoggedInUser
 
 /**
  * Class that requests authentication and user information from the remote data source and

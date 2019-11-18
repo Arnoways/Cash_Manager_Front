@@ -1,8 +1,7 @@
-package com.example.cashmanagerfront.data.manager
+package com.example.cashmanagerfront.objects
 
-import com.example.cashmanagerfront.data.model.Order
-import com.example.cashmanagerfront.data.model.Product
-import java.util.Collections.copy
+import com.example.cashmanagerfront.models.Order
+import com.example.cashmanagerfront.models.Product
 
 object Cart {
 

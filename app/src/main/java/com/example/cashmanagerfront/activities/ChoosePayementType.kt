@@ -1,7 +1,8 @@
-package com.example.cashmanagerfront
+package com.example.cashmanagerfront.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.cashmanagerfront.R
 
 class ChoosePayementType : AppCompatActivity() {
 

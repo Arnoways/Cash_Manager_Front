@@ -1,4 +1,4 @@
-package com.example.cashmanagerfront.ui.login
+package com.example.cashmanagerfront.activities.login
 
 /**
  * User details post authentication that is exposed to the UI

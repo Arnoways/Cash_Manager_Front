@@ -1,4 +1,4 @@
-package com.example.cashmanagerfront
+package com.example.cashmanagerfront.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.widget.*
 import androidx.core.view.setPadding
 import com.example.cashmanagerfront.R
-import com.example.cashmanagerfront.data.manager.Cart
+import com.example.cashmanagerfront.objects.Cart
 import kotlinx.android.synthetic.main.activity_resume_cart.*
 
 class ResumeCart : AppCompatActivity() {

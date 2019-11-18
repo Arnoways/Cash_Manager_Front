@@ -1,4 +1,4 @@
-package com.example.cashmanagerfront.ui.login
+package com.example.cashmanagerfront.activities.login
 
 import android.app.Activity
 import android.content.Intent
@@ -15,7 +15,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
-import com.example.cashmanagerfront.ProductList
+import com.example.cashmanagerfront.activities.ProductList
 
 import com.example.cashmanagerfront.R
 

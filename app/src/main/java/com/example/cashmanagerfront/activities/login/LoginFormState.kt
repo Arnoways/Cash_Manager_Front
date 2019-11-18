@@ -1,4 +1,4 @@
-package com.example.cashmanagerfront.ui.login
+package com.example.cashmanagerfront.activities.login
 
 /**
  * Data validation state of the login form.

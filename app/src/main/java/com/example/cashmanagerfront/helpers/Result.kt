@@ -1,4 +1,4 @@
-package com.example.cashmanagerfront.data
+package com.example.cashmanagerfront.helpers
 
 /**
  * A generic class that holds a value with its loading status.

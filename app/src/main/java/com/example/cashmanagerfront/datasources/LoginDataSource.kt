@@ -1,6 +1,7 @@
-package com.example.cashmanagerfront.data
+package com.example.cashmanagerfront.datasources
 
-import com.example.cashmanagerfront.data.model.LoggedInUser
+import com.example.cashmanagerfront.helpers.Result
+import com.example.cashmanagerfront.models.LoggedInUser
 import java.io.IOException
 
 /**

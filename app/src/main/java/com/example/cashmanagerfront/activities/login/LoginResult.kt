@@ -1,4 +1,4 @@
-package com.example.cashmanagerfront.ui.login
+package com.example.cashmanagerfront.activities.login
 
 /**
  * Authentication result : success (user details) or error message.
