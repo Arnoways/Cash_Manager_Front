@@ -69,7 +69,7 @@
                 android:textStyle="normal" />
 
             <TextView
-                android:id="@+id/productListTableRowPriceLabel"
+                android:id="@+id/productListTableRowQuantityLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
@@ -114,6 +114,7 @@
         style="@style/Widget.Cashback.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@android:drawable/btn_default_material"
         android:text="@string/action_check_cart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

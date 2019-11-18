@@ -13,6 +13,7 @@
     <string name="label_product">Product</string>
     <string name="label_product_name">Name</string>
     <string name="label_product_price">Price</string>
+    <string name="label_product_quantity">Quantity</string>
     <string name="label_product_action">Action</string>
     <string name="action_back_products">Go back to products</string>
     <!-- Strings related to a cart -->

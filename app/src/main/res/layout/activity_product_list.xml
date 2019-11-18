@@ -69,13 +69,13 @@
                 android:textStyle="normal" />
 
             <TextView
-                android:id="@+id/productListTableRowPriceLabel"
+                android:id="@+id/productListTableRowQuantityLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
                 android:layout_weight="1"
                 android:background="@color/colorPrimaryDark"
-                android:text="@string/label_product_price"
+                android:text="@string/label_product_quantity"
                 android:textColor="@color/textColorSecondary"
                 android:textSize="24sp" />
 
@@ -114,6 +114,7 @@
         style="@style/Widget.Cashback.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@android:drawable/btn_default_material"
         android:text="@string/action_check_cart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

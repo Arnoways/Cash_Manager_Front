@@ -59,7 +59,7 @@ class ProductList : AppCompatActivity() {
 
             // create the table row subcomponents
             val nameView = TextView(this)
-            val priceView = TextView(this)
+            val quantityView = TextView(this)
             val addButton = Button(this)
 //            val removeButton = Button(this)
             val buttonLayout = LinearLayout(this)
@@ -67,6 +67,7 @@ class ProductList : AppCompatActivity() {
             // add event listener to buttons
             addButton.setOnClickListener {
                 var ret = Cart.add(product)
+                quantityView.setText((quantityView.getText().toString().toInt() + 1).toString())
                 if (ret == true) {
                     Toast.makeText(
                         this,
@@ -92,20 +93,27 @@ class ProductList : AppCompatActivity() {
             buttonLayout.addView(addButton)
 //            buttonLayout.addView(removeButton)
 
-            addButton.id = Math.random().toInt()
+
 //            removeButton.id = Math.random().toInt()
 
             buttonLayout.orientation = LinearLayout.VERTICAL
 
             // set the text values
             nameView.setText(products[index].name.toString())
-            priceView.setText("%.2f".format(products[index].price))
+            quantityView.setText("0")
+//            priceView.setText("%.2f".format(products[index].price))
+
+            // set the text view id
+            nameView.id = Math.random().toInt()
+            quantityView.id = Math.random().toInt()
+            addButton.id = Math.random().toInt()
+            buttonLayout.id = Math.random().toInt()
 
             // stylish text view
             nameView.setTextAppearance(R.style.textViewStyle)
-            priceView.setTextAppearance(R.style.textViewStyle)
+            quantityView.setTextAppearance(R.style.textViewStyle)
             nameView.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM)
-            priceView.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM)
+            quantityView.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM)
 
             // set the layout params
             nameView.setLayoutParams(LinearLayout.LayoutParams(
@@ -113,7 +121,7 @@ class ProductList : AppCompatActivity() {
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 0.75F
             ))
-            priceView.setLayoutParams(LinearLayout.LayoutParams(
+            quantityView.setLayoutParams(LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 1F
@@ -126,7 +134,7 @@ class ProductList : AppCompatActivity() {
 
             // add it to our row
             row.addView(nameView)
-            row.addView(priceView)
+            row.addView(quantityView)
             row.addView(buttonLayout)
 
             // add row to our table
