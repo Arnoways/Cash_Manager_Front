@@ -57,6 +57,26 @@ object Cart {
         return c
     }
 
+    fun getTotalHt(): Double {
+        var total = 0.0
+        for (product in products) {
+            total = total + product.price_without_taxes
+        }
+
+        return total
+    }
+
+    fun getTotalTtc(): Double {
+        var total = 0.0
+        for (product in products) {
+            total = total + product.price_without_taxes
+        }
+
+        total = total * 1.20
+
+        return total
+    }
+
     fun empty() {
         products.clear()
     }

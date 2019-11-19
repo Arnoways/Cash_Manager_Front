@@ -22,6 +22,11 @@ class ResumeCart : AppCompatActivity() {
             startActivity(Intent(this, ProductList::class.java))
         }
 
+        // add onclick on go to cart button
+        resumeCartButtonPayment.setOnClickListener {
+            startActivity(Intent(this, Payment::class.java))
+        }
+
         // add onclick on empty cart button
         resumeCartButtonEmpty.setOnClickListener{
             // empty cart
