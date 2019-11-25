@@ -18,9 +18,22 @@ import com.example.cashmanagerfront.objects.Payment
 
 class QRCodeReader : AppCompatActivity(), QRCodeReaderViewClass.OnQRCodeReadListener {
 
+    var camera: Int = 1 // set the front camera first
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_qrcodereader)
+
+        QRCodeReaderCamera.setOnClickListener {
+            onPause()
+            if (camera == 0) {
+                QRCodeReaderView.setFrontCamera()
+                camera = 1
+            } else {
+                QRCodeReaderView.setBackCamera()
+                camera = 0
+            }
+            onResume()
+        }
 
         // Here, thisActivity is the current activity
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
@@ -32,10 +45,7 @@ class QRCodeReader : AppCompatActivity(), QRCodeReaderViewClass.OnQRCodeReadList
             QRCodeReaderView.setAutofocusInterval(2000L)
             // Use this function to enable/disable Torch
 //            QRCodeReaderView.setTorchEnabled(true)
-            // Use this function to set front camera preview
             QRCodeReaderView.setFrontCamera()
-            // Use this function to set back camera preview
-//            QRCodeReaderView.setBackCamera()
 
         }
     }
