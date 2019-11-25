@@ -1,20 +1,17 @@
 package com.example.cashmanagerfront.activities
 
 import android.content.Intent
-import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.net.toUri
+import android.widget.Toast
 import com.example.cashmanagerfront.R
 import com.example.cashmanagerfront.objects.Cart
 import com.github.sumimakito.awesomeqr.AwesomeQrRenderer
-import com.github.sumimakito.awesomeqr.RenderResult
 import com.github.sumimakito.awesomeqr.option.RenderOption
-import com.github.sumimakito.awesomeqr.option.background.GifBackground
 import com.github.sumimakito.awesomeqr.option.color.Color
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 import kotlinx.android.synthetic.main.activity_payment.*
-import java.io.File
+import com.example.cashmanagerfront.objects.Payment
 
 class Payment : AppCompatActivity() {
 
@@ -22,7 +19,16 @@ class Payment : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment)
 
+        // set the status to undefined
+        paymentStatusText.setText("Payment status : " + Payment.display())
         generateQrCode()
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        // set the status to the good one
+        paymentStatusText.setText("Payment status : " + Payment.display())
     }
 
     fun generateQrCode() {
@@ -52,11 +58,20 @@ class Payment : AppCompatActivity() {
                 }
             } else {
                 // Oops, something gone wrong.
-                println("ERROR PROCESSING QR CODE 2")
+                Toast.makeText(
+                    this,
+                    "Error processing QRCode",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         } catch (e: Exception) {
             e.printStackTrace()
             // Oops, something gone wrong.
+            Toast.makeText(
+                this,
+                "Error processing QRCode",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 }

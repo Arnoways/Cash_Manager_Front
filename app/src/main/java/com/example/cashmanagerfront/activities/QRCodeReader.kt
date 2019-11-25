@@ -1,14 +1,18 @@
 package com.example.cashmanagerfront.activities
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.PointF
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import com.example.cashmanagerfront.R
+import com.example.cashmanagerfront.enums.PaymentMethod
+import com.example.cashmanagerfront.enums.PaymentStatus
 import kotlinx.android.synthetic.main.activity_qrcodereader.*
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView as QRCodeReaderViewClass
+import com.example.cashmanagerfront.objects.Payment
 
 
 
@@ -44,8 +48,21 @@ class QRCodeReader : AppCompatActivity(), QRCodeReaderViewClass.OnQRCodeReadList
         println(text)
         // stop camera
         onPause()
-        // call payment activity with text
+        // set method payment as cheque
+        Payment.method = PaymentMethod.CHEQUE.value()
+        Payment.status = PaymentStatus.PENDING.value()
 
+        // call payment activity with text
+        val ret = null // TODO - Call Api to get response for the cheque
+        if (ret == "sucess") {
+            Payment.status = PaymentStatus.AUTHORIZED.value()
+        } else if (ret == "error") {
+            Payment.status = PaymentStatus.REFUSED.value()
+        } else {
+            Payment.status = PaymentStatus.PENDING.value()
+        }
+        // display back payment activity
+        startActivity(Intent(this, Payment::class.java))
     }
 
     override fun onResume() {
