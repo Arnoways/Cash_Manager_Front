@@ -62,7 +62,6 @@ class ProductList : AppCompatActivity() {
             val priceView = TextView(this)
             val quantityView = TextView(this)
             val addButton = Button(this)
-//            val removeButton = Button(this)
             val textLayout = LinearLayout(this)
 
             // add event listener to buttons
@@ -78,17 +77,6 @@ class ProductList : AppCompatActivity() {
                 }
             }
 
-//            removeButton.setOnClickListener {
-//                var ret = Cart.remove(product)
-//                if (ret == true) {
-//                    Toast.makeText(
-//                        this,
-//                        "Product removed from cart",
-//                        Toast.LENGTH_LONG
-//                    ).show()
-//                }
-//            }
-
             // set the text values
             nameView.setText(product.name.toString())
             quantityView.setText(Cart.countProducts(product).toString())
@@ -99,11 +87,6 @@ class ProductList : AppCompatActivity() {
 
             // set buttons
             addButton.setText("+")
-//            removeButton.setText("-")
-//            buttonLayout.addView(removeButton)
-
-
-//            removeButton.id = Math.random().toInt()
 
             textLayout.orientation = LinearLayout.VERTICAL
 

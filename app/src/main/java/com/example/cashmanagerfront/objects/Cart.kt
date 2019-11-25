@@ -17,7 +17,7 @@ object Cart {
     /*
         Remove a product from our cart
      */
-    fun remove(product: Product): Boolean {
+    fun remove(product: Product?): Boolean {
         return products.remove(product)
     }
 

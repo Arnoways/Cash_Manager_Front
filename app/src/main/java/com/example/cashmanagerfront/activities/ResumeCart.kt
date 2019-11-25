@@ -59,10 +59,47 @@ class ResumeCart : AppCompatActivity() {
             val nameView = TextView(this)
             val quantityView = TextView(this)
             val priceView = TextView(this)
+            val removeButton = Button(this)
+            val textLayout = LinearLayout(this)
+
+            // add event listener to buttons
+            removeButton.setOnClickListener {
+                val quantity = quantityView.getText().toString().toInt()
+                if (quantity > 0) {
+                    val product = order.getProduct()
+                    var ret = Cart.remove(product)
+                    if (ret == true) {
+                        quantityView.setText((quantityView.getText().toString().toInt() - 1).toString())
+                        Toast.makeText(
+                            this,
+                            "Product removed from cart",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                        // restart the activity
+                        finish()
+                        startActivity(this.intent)
+                    }
+                }
+            }
 
             nameView.setText(order.name.toString())
             quantityView.setText(order.quantity.toString())
             priceView.setText("%.2f".format(order.price))
+
+            textLayout.addView(nameView)
+            textLayout.addView(quantityView)
+
+            // set buttons
+            removeButton.setText("-")
+
+            textLayout.orientation = LinearLayout.VERTICAL
+
+            // set the components id
+            nameView.id = Math.random().toInt()
+            priceView.id = Math.random().toInt()
+            quantityView.id = Math.random().toInt()
+            removeButton.id = Math.random().toInt()
 
             // stylish text view
             nameView.setTextAppearance(R.style.textViewStyle)
@@ -74,26 +111,20 @@ class ResumeCart : AppCompatActivity() {
 
 
             // set the layout params
-            nameView.setLayoutParams(LinearLayout.LayoutParams(
+            textLayout.setLayoutParams(LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT,
-                0.5F
+                0.75F
             ))
-            quantityView.setLayoutParams(
-                LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    1F
-                ))
             priceView.setLayoutParams(LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 1F
             ))
 
-            row.addView(nameView)
-            row.addView(quantityView)
+            row.addView(textLayout)
             row.addView(priceView)
+            row.addView(removeButton)
 
             resumeCartScrollLinearLayout.addView(row)
 
@@ -105,5 +136,9 @@ class ResumeCart : AppCompatActivity() {
         resumeCartTableRow1TotalHTNumber.setText("%.2f".format(totalHt))
         // add price ttc to number view
         resumeCartTableRow2TotalTTCNumber.setText("%.2f".format(totalHt * 1.20))
+    }
+
+    override fun onRestart() {
+        super.onRestart()
     }
 }
