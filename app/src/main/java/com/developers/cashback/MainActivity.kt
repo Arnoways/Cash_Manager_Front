@@ -1,9 +1,14 @@
 package com.developers.cashback
 
+import android.Manifest
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import java.util.logging.Logger
 import com.example.cashmanagerfront.R
+import com.example.cashmanagerfront.activities.Payment
 
 class MainActivity : AppCompatActivity() {
 

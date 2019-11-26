@@ -17,7 +17,7 @@ object Cart {
     /*
         Remove a product from our cart
      */
-    fun remove(product: Product): Boolean {
+    fun remove(product: Product?): Boolean {
         return products.remove(product)
     }
 
@@ -45,6 +45,9 @@ object Cart {
 
         }
 
+        // sort orders on the name
+        orders.sortBy { it -> it.name }
+
         return orders
     }
 
@@ -55,6 +58,26 @@ object Cart {
         }
 
         return c
+    }
+
+    fun getTotalHt(): Double {
+        var total = 0.0
+        for (product in products) {
+            total = total + product.price_without_taxes
+        }
+
+        return total
+    }
+
+    fun getTotalTtc(): Double {
+        var total = 0.0
+        for (product in products) {
+            total = total + product.price_without_taxes
+        }
+
+        total = total * 1.20
+
+        return total
     }
 
     fun empty() {

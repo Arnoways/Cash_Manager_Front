@@ -24,7 +24,7 @@ class ResumeCart : AppCompatActivity() {
 
         // add onclick on go to cart button
         resumeCartButtonPayment.setOnClickListener {
-            startActivity(Intent(this, ChoosePayementType::class.java))
+            startActivity(Intent(this, Payment::class.java))
         }
 
         // add onclick on empty cart button
@@ -32,12 +32,7 @@ class ResumeCart : AppCompatActivity() {
             // empty cart
             Cart.empty()
 
-            // remove orders in the view
-            resumeCartScrollLinearLayout.removeAllViewsInLayout()
-
-            // set the total ht and total ttc
-            resumeCartTableRow1TotalHTNumber.setText("0.00")
-            resumeCartTableRow2TotalTTCNumber.setText("0.00")
+            clearBill()
 
             Toast.makeText(
                 this,
@@ -46,7 +41,21 @@ class ResumeCart : AppCompatActivity() {
             ).show()
         }
 
+        generateBill()
 
+    }
+
+    fun clearBill() {
+
+        // remove orders in the view
+        resumeCartScrollLinearLayout.removeAllViewsInLayout()
+
+        // set the total ht and total ttc
+        resumeCartTableRow1TotalHTNumber.setText("0.00")
+        resumeCartTableRow2TotalTTCNumber.setText("0.00")
+    }
+
+    fun generateBill() {
         val orders = Cart.orders()
 
         var totalHt = 0.0
@@ -64,10 +73,46 @@ class ResumeCart : AppCompatActivity() {
             val nameView = TextView(this)
             val quantityView = TextView(this)
             val priceView = TextView(this)
+            val removeButton = Button(this)
+            val textLayout = LinearLayout(this)
+
+            // add event listener to buttons
+            removeButton.setOnClickListener {
+                val quantity = quantityView.getText().toString().toInt()
+                if (quantity > 0) {
+                    val product = order.getProduct()
+                    var ret = Cart.remove(product)
+                    if (ret == true) {
+
+                        clearBill()
+                        generateBill()
+
+                        Toast.makeText(
+                            this,
+                            "Product removed from cart",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
 
             nameView.setText(order.name.toString())
             quantityView.setText(order.quantity.toString())
             priceView.setText("%.2f".format(order.price))
+
+            textLayout.addView(nameView)
+            textLayout.addView(quantityView)
+
+            // set buttons
+            removeButton.setText("-")
+
+            textLayout.orientation = LinearLayout.VERTICAL
+
+            // set the components id
+            nameView.id = Math.random().toInt()
+            priceView.id = Math.random().toInt()
+            quantityView.id = Math.random().toInt()
+            removeButton.id = Math.random().toInt()
 
             // stylish text view
             nameView.setTextAppearance(R.style.textViewStyle)
@@ -79,26 +124,20 @@ class ResumeCart : AppCompatActivity() {
 
 
             // set the layout params
-            nameView.setLayoutParams(LinearLayout.LayoutParams(
+            textLayout.setLayoutParams(LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT,
-                0.5F
+                0.75F
             ))
-            quantityView.setLayoutParams(
-                LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    1F
-                ))
             priceView.setLayoutParams(LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 1F
             ))
 
-            row.addView(nameView)
-            row.addView(quantityView)
+            row.addView(textLayout)
             row.addView(priceView)
+            row.addView(removeButton)
 
             resumeCartScrollLinearLayout.addView(row)
 
@@ -110,5 +149,9 @@ class ResumeCart : AppCompatActivity() {
         resumeCartTableRow1TotalHTNumber.setText("%.2f".format(totalHt))
         // add price ttc to number view
         resumeCartTableRow2TotalTTCNumber.setText("%.2f".format(totalHt * 1.20))
+    }
+
+    override fun onRestart() {
+        super.onRestart()
     }
 }
