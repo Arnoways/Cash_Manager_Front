@@ -55,7 +55,7 @@ private fun getAllProduct(): JSONArray {
     return productList
 }
 
-private fun getAllProduct(idProduct: Int): JSONObject {
+private fun getAProduct(idProduct: Int): JSONObject {
 
     var url = serveurRoute +"api/product/"+idProduct
     var r = get(url)
