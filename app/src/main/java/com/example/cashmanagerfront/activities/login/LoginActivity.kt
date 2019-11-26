@@ -27,6 +27,7 @@ import com.example.cashmanagerfront.R
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
+    private val REQUEST_WRITE_PERMISSION = 20
 
     companion object {
         val PERMISSIONS_REQUEST_CAMERA = 1
@@ -122,10 +123,8 @@ class LoginActivity : AppCompatActivity() {
                 // sees the explanation, try again to request the permission.
             } else {
                 // No explanation needed, we can request the permission.
-                ActivityCompat.requestPermissions(this,
-                    arrayOf(Manifest.permission.CAMERA),
-                    PERMISSIONS_REQUEST_CAMERA
-                )
+                ActivityCompat.requestPermissions(this, arrayOf(
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission_group.CAMERA, Manifest.permission.CAMERA), REQUEST_WRITE_PERMISSION)
             }
         }
     }
