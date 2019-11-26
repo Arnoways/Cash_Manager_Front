@@ -2,7 +2,7 @@ package com.example.cashmanagerfront.data.API
 
 import khttp.*
 import org.json.JSONObject
-import com.example.cashmanagerfront.data.model.Cart
+import com.example.cashmanagerfront.objects.Cart
 import org.json.JSONArray
 
 

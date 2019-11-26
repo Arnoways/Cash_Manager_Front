@@ -1,4 +1,4 @@
-package com.example.cashmanagerfront.datasources
+package com.example.cashmanagerfront.data
 
 import com.example.cashmanagerfront.helpers.Result
 import com.example.cashmanagerfront.models.LoggedInUser

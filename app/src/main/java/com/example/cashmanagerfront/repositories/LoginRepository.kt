@@ -1,6 +1,6 @@
 package com.example.cashmanagerfront.repositories
 
-import com.example.cashmanagerfront.datasources.LoginDataSource
+import com.example.cashmanagerfront.data.LoginDataSource
 import com.example.cashmanagerfront.helpers.Result
 import com.example.cashmanagerfront.models.LoggedInUser
 

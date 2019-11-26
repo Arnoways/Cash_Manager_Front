@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.cashmanagerfront.datasources.ProductDataSource
+import com.example.cashmanagerfront.data.ProductDataSource
 import com.example.cashmanagerfront.models.Product
 
 import android.widget.*
@@ -27,7 +27,9 @@ class ProductList : AppCompatActivity() {
             startActivity(Intent(this, ResumeCart::class.java))
         }
 
-        var productList: MutableList<Product> = ProductDataSource(this).loadProducts()
+        var productList: MutableList<Product> = ProductDataSource(
+            this
+        ).loadProducts()
         // get Table Layout
         var tableView: LinearLayout = findViewById(R.id.productListScrollLinearLayout)
 

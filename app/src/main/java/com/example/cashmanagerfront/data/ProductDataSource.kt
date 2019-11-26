@@ -1,4 +1,4 @@
-package com.example.cashmanagerfront.datasources
+package com.example.cashmanagerfront.data
 
 import android.app.Activity
 import com.example.cashmanagerfront.models.Product
