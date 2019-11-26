@@ -27,12 +27,7 @@ class ResumeCart : AppCompatActivity() {
             // empty cart
             Cart.empty()
 
-            // remove orders in the view
-            resumeCartScrollLinearLayout.removeAllViewsInLayout()
-
-            // set the total ht and total ttc
-            resumeCartTableRow1TotalHTNumber.setText("0.00")
-            resumeCartTableRow2TotalTTCNumber.setText("0.00")
+            clearBill()
 
             Toast.makeText(
                 this,
@@ -41,7 +36,21 @@ class ResumeCart : AppCompatActivity() {
             ).show()
         }
 
+        generateBill()
 
+    }
+
+    fun clearBill() {
+
+        // remove orders in the view
+        resumeCartScrollLinearLayout.removeAllViewsInLayout()
+
+        // set the total ht and total ttc
+        resumeCartTableRow1TotalHTNumber.setText("0.00")
+        resumeCartTableRow2TotalTTCNumber.setText("0.00")
+    }
+
+    fun generateBill() {
         val orders = Cart.orders()
 
         var totalHt = 0.0
@@ -69,16 +78,15 @@ class ResumeCart : AppCompatActivity() {
                     val product = order.getProduct()
                     var ret = Cart.remove(product)
                     if (ret == true) {
-                        quantityView.setText((quantityView.getText().toString().toInt() - 1).toString())
+
+                        clearBill()
+                        generateBill()
+
                         Toast.makeText(
                             this,
                             "Product removed from cart",
                             Toast.LENGTH_SHORT
                         ).show()
-
-                        // restart the activity
-                        finish()
-                        startActivity(this.intent)
                     }
                 }
             }

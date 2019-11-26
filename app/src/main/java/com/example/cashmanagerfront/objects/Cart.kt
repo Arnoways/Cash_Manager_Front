@@ -45,6 +45,9 @@ object Cart {
 
         }
 
+        // sort orders on the name
+        orders.sortBy { it -> it.name }
+
         return orders
     }
 
