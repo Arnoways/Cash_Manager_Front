@@ -7,6 +7,9 @@ import android.content.pm.ActivityInfo
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.nfc.NfcAdapter
+import android.nfc.Tag
+import android.nfc.tech.IsoDep
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,6 +18,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import com.example.cashmanagerfront.R
+import com.example.cashmanagerfront.helpers.Utils
 import com.example.cashmanagerfront.objects.Cart
 import com.github.sumimakito.awesomeqr.AwesomeQrRenderer
 import com.github.sumimakito.awesomeqr.option.RenderOption
@@ -29,7 +33,7 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.io.IOException
 
-class Payment : AppCompatActivity() {
+class Payment : AppCompatActivity(), NfcAdapter.ReaderCallback {
 
     /*
         Barcode variables
@@ -44,6 +48,12 @@ class Payment : AppCompatActivity() {
     private val SAVED_INSTANCE_RESULT = "result"
     private var currImagePath: String? = null
     internal var imageFile: File? = null
+
+    /*
+        NFC variables
+     */
+    private var nfcAdapter: NfcAdapter? = null
+    private val LOG_NFC = "NFC Reader API"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,10 +72,32 @@ class Payment : AppCompatActivity() {
         detector = BarcodeDetector.Builder(applicationContext)
             .setBarcodeFormats(Barcode.ALL_FORMATS)
             .build()
+
+        // NFC
+        nfcAdapter = NfcAdapter.getDefaultAdapter(this);
+    }
+
+    public override fun onPause() {
+        super.onPause()
+        nfcAdapter?.disableReaderMode(this)
+    }
+
+    override fun onTagDiscovered(tag: Tag?) {
+        val isoDep = IsoDep.get(tag)
+        isoDep.connect()
+        val response = isoDep.transceive(Utils.hexStringToByteArray(
+            "00A4040007A0000002471001"))
+        Log.e(LOG_NFC, "\nCard Response: " + Utils.toHex(response))
+        isoDep.close()
     }
 
     override fun onStart() {
         super.onStart()
+
+        // Enable NFC
+        nfcAdapter?.enableReaderMode(this, this,
+            NfcAdapter.FLAG_READER_NFC_A or NfcAdapter.FLAG_READER_SKIP_NDEF_CHECK,
+            null)
 
         // set the status to the good one
         paymentStatusText.setText("Payment status : " + Payment.display())
