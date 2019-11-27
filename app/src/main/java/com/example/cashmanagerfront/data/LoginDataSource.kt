@@ -1,7 +1,8 @@
 package com.example.cashmanagerfront.data
 
 import com.example.cashmanagerfront.helpers.Result
-import com.example.cashmanagerfront.models.LoggedInUser
+import com.example.cashmanagerfront.models.User
+import com.example.cashmanagerfront.objects.api.Api
 import java.io.IOException
 
 /**
@@ -9,11 +10,13 @@ import java.io.IOException
  */
 class LoginDataSource {
 
-    fun login(username: String, password: String): Result<LoggedInUser> {
+    fun login(email: String, password: String): Result<User> {
         try {
-            // TODO: handle loggedInUser authentication
-            val fakeUser = LoggedInUser(java.util.UUID.randomUUID().toString(), "Jane Doe")
-            return Result.Success(fakeUser)
+            val result = Api.signIn(email, password)
+
+            val user = User(result, Api.token!!)
+
+            return Result.Success(user)
         } catch (e: Throwable) {
             return Result.Error(IOException("Error logging in", e))
         }
