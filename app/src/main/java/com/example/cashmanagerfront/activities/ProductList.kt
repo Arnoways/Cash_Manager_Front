@@ -28,11 +28,7 @@ class ProductList : AppCompatActivity() {
             startActivity(Intent(this, ResumeCart::class.java))
         }
 
-        var products = Api.getAllProducts()
-        var productList: MutableList<Product> = ProductDataSource(
-            this
-        ).loadProducts()
-        // get Table Layout
+        var productList = Api.getAllProducts()
         var tableView: LinearLayout = findViewById(R.id.productListScrollLinearLayout)
 
         generateTable(productList, tableView)

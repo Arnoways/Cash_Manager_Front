@@ -5,6 +5,7 @@ import com.example.cashmanagerfront.objects.Cart
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.extensions.authentication
 import com.github.kittinunf.fuel.core.extensions.jsonBody
+import org.json.JSONArray
 import org.json.JSONObject
 
 object Api {
@@ -13,8 +14,12 @@ object Api {
 
     /***
      *
-     * Gestion de l'authentification
+     * Authentification
      *
+     */
+
+    /*
+        This function allow the user to connect to the server, and get a token as a response.
      */
     fun signIn(email : String, pwd : String): Int {
         var ret = 0
@@ -57,6 +62,9 @@ object Api {
                 val (bytes, error) = result
                 if (bytes != null) {
                     println("[response bytes] ${String(bytes)}")
+
+                    // destroy the token
+                    token = null
                 }
                 if (error != null) {
                     println(error)
@@ -89,49 +97,82 @@ object Api {
 
     /***
      *
-     * Gestion des produits
+     * Products
      *
      */
 
-    fun getAllProducts() {
+    /*
+        This function make a call to the server, get a JSONArray as response, and parse it to return a Mutable List of Products
+     */
+    fun getAllProducts(): MutableList<Product> {
         var url = serveurRoute + "/api/products"
+        val productList: MutableList<Product> = mutableListOf()
+
         var r = Fuel
             .get(url)
             .authentication()
             .bearer(token!!)
             .response { request, response, result ->
-            println(request)
-            println(response)
-            val (bytes, error) = result
-            if (bytes != null) {
-                println("[response bytes] ${String(bytes)}")
+                println(request)
+                println(response)
+                val (bytes, error) = result
+                if (bytes != null) {
+                    val rArray = JSONArray(String(bytes))
+
+                    var index = 0
+                    while(index < rArray.length()) {
+                        val rProduct = JSONObject(rArray[index].toString())
+                        val product = Product(
+                            rProduct.getInt("id"),
+                            rProduct.getString("name"),
+                            rProduct.getDouble("price")
+                        )
+
+                        productList.add(product)
+
+                        index++
+                    }
+                }
+                if (error != null) {
+                    println(error)
+                }
             }
-            if (error != null) {
-                println(error)
-            }
-        }
+
+        r.join()
+
+        return productList
     }
 
-    fun getAProduct(idProduct: Int): Product {
-
+    /*
+        This function make a call to the server, get a JSONObject as response, and parse it to return Product
+     */
+    fun getProduct(idProduct: Int): Product {
         var url = serveurRoute +"api/product/"+idProduct
+
+        var product: Product? = null
         var r = Fuel
             .get(url)
             .authentication()
             .bearer(token!!)
             .response { request, response, result ->
-            println(request)
-            println(response)
-            val (bytes, error) = result
-            if (bytes != null) {
-                println("[response bytes] ${String(bytes)}")
-            }
-            if (error != null) {
-                println(error)
-            }
-        }
+                println(request)
+                println(response)
+                val (bytes, error) = result
+                if (bytes != null) {
+                    val r = JSONObject(String(bytes))
+                    product = Product(
+                        r.getInt("id"),
+                        r.getString("name"),
+                        r.getDouble("price")
+                    )
 
-        return Product()
+                }
+                if (error != null) {
+                    println(error)
+                }
+            }
+
+        return product!!
     }
 
 
