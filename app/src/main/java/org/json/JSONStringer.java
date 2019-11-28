@@ -54,7 +54,7 @@ import java.io.StringWriter;
  * <p>
  * This can sometimes be easier than using a JSONObject to build a string.
  * @author JSON.org
- * @version 2008-09-18
+ * @version 2015-12-09
  */
 public class JSONStringer extends JSONWriter {
     /**
@@ -74,6 +74,6 @@ public class JSONStringer extends JSONWriter {
      */
     @Override
     public String toString() {
-        return this.mode == 'd' ? this.writer.toString() : "";
+        return this.mode == 'd' ? this.writer.toString() : null;
     }
 }

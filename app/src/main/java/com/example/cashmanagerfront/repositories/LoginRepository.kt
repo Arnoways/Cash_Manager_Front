@@ -2,7 +2,7 @@ package com.example.cashmanagerfront.repositories
 
 import com.example.cashmanagerfront.data.LoginDataSource
 import com.example.cashmanagerfront.helpers.Result
-import com.example.cashmanagerfront.models.LoggedInUser
+import com.example.cashmanagerfront.models.User
 
 /**
  * Class that requests authentication and user information from the remote data source and
@@ -12,7 +12,7 @@ import com.example.cashmanagerfront.models.LoggedInUser
 class LoginRepository(val dataSource: LoginDataSource) {
 
     // in-memory cache of the loggedInUser object
-    var user: LoggedInUser? = null
+    var user: User? = null
         private set
 
     val isLoggedIn: Boolean
@@ -29,19 +29,19 @@ class LoginRepository(val dataSource: LoginDataSource) {
         dataSource.logout()
     }
 
-    fun login(username: String, password: String): Result<LoggedInUser> {
+    fun login(username: String, password: String): Result<User> {
         // handle login
         val result = dataSource.login(username, password)
 
         if (result is Result.Success) {
-            setLoggedInUser(result.data)
+            setUser(result.data)
         }
 
         return result
     }
 
-    private fun setLoggedInUser(loggedInUser: LoggedInUser) {
-        this.user = loggedInUser
+    private fun setUser(user: User) {
+        this.user = user
         // If user credentials will be cached in local storage, it is recommended it be encrypted
         // @see https://developer.android.com/training/articles/keystore
     }

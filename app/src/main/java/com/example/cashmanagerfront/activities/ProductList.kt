@@ -12,6 +12,7 @@ import androidx.core.view.setPadding
 import android.widget.LinearLayout
 import com.example.cashmanagerfront.R
 import com.example.cashmanagerfront.objects.Cart
+import com.example.cashmanagerfront.objects.api.Api
 
 
 class ProductList : AppCompatActivity() {
@@ -27,10 +28,7 @@ class ProductList : AppCompatActivity() {
             startActivity(Intent(this, ResumeCart::class.java))
         }
 
-        var productList: MutableList<Product> = ProductDataSource(
-            this
-        ).loadProducts()
-        // get Table Layout
+        var productList = Api.getAllProducts()
         var tableView: LinearLayout = findViewById(R.id.productListScrollLinearLayout)
 
         generateTable(productList, tableView)
