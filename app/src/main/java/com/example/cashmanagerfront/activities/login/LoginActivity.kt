@@ -23,6 +23,8 @@ import com.developers.cashback.MainActivity
 import com.example.cashmanagerfront.activities.ProductList
 
 import com.example.cashmanagerfront.R
+import com.example.cashmanagerfront.data.BddDataSource
+import com.example.cashmanagerfront.objects.api.Api
 
 class LoginActivity : AppCompatActivity() {
 
@@ -68,6 +70,11 @@ class LoginActivity : AppCompatActivity() {
                 showLoginFailed(loginResult.error)
             }
             if (loginResult.success != null) {
+                // Reset BDD
+                if (Api.getAllProducts().size == 0) {
+                    val bdd = BddDataSource(this)
+                    bdd.generateProducts()
+                }
                 startActivity(Intent(this, ProductList::class.java))
             }
             setResult(Activity.RESULT_OK)

@@ -101,6 +101,56 @@ object Api {
      *
      */
 
+    fun deleteProduct(id: Int): Boolean {
+        var ret = false
+        val url = serveurRoute + "/api/product"
+
+        val r = Fuel
+            .delete(url + id.toString())
+            .authentication()
+            .bearer(token!!)
+            .response { request, response, result ->
+                val (bytes, error) = result
+                if (bytes != null) {
+                    ret = true
+                    println("Product deleted")
+                }
+                if (error != null) {
+                    println(error)
+                }
+            }
+
+        r.join()
+
+        return ret
+    }
+
+    fun createProduct(id: Int, name: String, price: Double): Boolean {
+        var ret = false
+        val url = serveurRoute + "/api/product"
+        val payload = JSONObject(mapOf("description" to "", "id" to id, "image" to "", "name" to name, "price" to price))
+
+        val r = Fuel
+            .post(url)
+            .authentication()
+            .bearer(token!!)
+            .jsonBody(payload.toString())
+            .response { request, response, result ->
+                val (bytes, error) = result
+                if (bytes != null) {
+                    ret = true
+                    println("Product created")
+
+                }
+                if (error != null) {
+                    println(error)
+                }
+            }
+
+        r.join()
+
+        return ret
+    }
     /*
         This function make a call to the server, get a JSONArray as response, and parse it to return a Mutable List of Products
      */
