@@ -96,9 +96,9 @@ class ResumeCart : AppCompatActivity() {
                 }
             }
 
-            nameView.setText(order.name.toString())
+            nameView.setText(order.name.toString().replace("\"", ""))
             quantityView.setText(order.quantity.toString())
-            priceView.setText("%.2f".format(order.price))
+            priceView.setText("%.2f $".format(order.price))
 
             textLayout.addView(nameView)
             textLayout.addView(quantityView)

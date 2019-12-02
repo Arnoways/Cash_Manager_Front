@@ -78,9 +78,9 @@ class ProductList : AppCompatActivity() {
             }
 
             // set the text values
-            nameView.setText(product.name.toString())
+            nameView.setText(product.name.toString().replace("\"", ""))
             quantityView.setText(Cart.countProducts(product).toString())
-            priceView.setText("Price : %.2f".format(product.price))
+            priceView.setText("Price : %.2f $".format(product.price))
 
             textLayout.addView(nameView)
             textLayout.addView(priceView)
