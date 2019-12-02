@@ -18,6 +18,8 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import com.example.cashmanagerfront.R
+import com.example.cashmanagerfront.enums.PaymentMethod
+import com.example.cashmanagerfront.enums.PaymentStatus
 import com.example.cashmanagerfront.helpers.Utils
 import com.example.cashmanagerfront.objects.Cart
 import com.github.sumimakito.awesomeqr.AwesomeQrRenderer
@@ -26,6 +28,7 @@ import com.github.sumimakito.awesomeqr.option.color.Color
 
 import kotlinx.android.synthetic.main.activity_payment.*
 import com.example.cashmanagerfront.objects.Payment
+import com.example.cashmanagerfront.objects.api.Api
 import com.google.android.gms.vision.Frame
 import com.google.android.gms.vision.barcode.Barcode
 import com.google.android.gms.vision.barcode.BarcodeDetector
@@ -55,6 +58,12 @@ class Payment : AppCompatActivity(), NfcAdapter.ReaderCallback {
     private var nfcAdapter: NfcAdapter? = null
     private val LOG_NFC = "NFC Reader API"
 
+    /*
+        Payment variables
+     */
+    private var paymentMethod = PaymentMethod.NONE.value()
+    private var paymentStatus = PaymentStatus.NONE.value()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment)
@@ -82,6 +91,10 @@ class Payment : AppCompatActivity(), NfcAdapter.ReaderCallback {
         nfcAdapter?.disableReaderMode(this)
     }
 
+    public fun updateStatusText(value: String) {
+        paymentStatusText.setText("Payment status : " + Payment.display())
+    }
+
     /*
         When an NFC tag is discovered
      */
@@ -92,6 +105,12 @@ class Payment : AppCompatActivity(), NfcAdapter.ReaderCallback {
             "00A4040007A0000002471001"))
         Log.e(LOG_NFC, "\nCard Response: " + Utils.toHex(response))
         isoDep.close()
+
+        Payment.method = PaymentMethod.CARD.value()
+        var paymentRet = Api.processPayment(PaymentMethod.CARD.value(), Utils.toHex(response))
+        if (paymentRet == "Refused") Payment.status = PaymentStatus.REFUSED.value()
+        else if (paymentRet == "Authorized") Payment.status = PaymentStatus.AUTHORIZED.value()
+        else Payment.status = PaymentStatus.PENDING.value()
     }
 
     override fun onStart() {
@@ -165,19 +184,35 @@ class Payment : AppCompatActivity(), NfcAdapter.ReaderCallback {
                 if (detector!!.isOperational && bitmap != null) {
                     val frame = Frame.Builder().setBitmap(bitmap).build()
                     val barcodes = detector!!.detect(frame)
+                    var paymentRet: String = ""
+                    Payment.method = PaymentMethod.CHEQUE.value()
                     for (index in 0 until barcodes.size()) {
                         val code = barcodes.valueAt(index)
                         scanResults = scanResults.toString() + code.displayValue
                         val type = barcodes.valueAt(index).valueFormat
                         when (type) {
-                            Barcode.CONTACT_INFO -> Log.i(LOG_TAG, code.contactInfo.title)
-                            Barcode.TEXT -> Log.i(LOG_TAG, code.rawValue)
-                            else -> Log.i(LOG_TAG, code.rawValue)
+                            Barcode.CONTACT_INFO -> {
+                                Log.i(LOG_TAG, code.contactInfo.title)
+                                paymentRet = Api.processPayment(PaymentMethod.CHEQUE.value(), code.contactInfo.title)
+                            }
+                            Barcode.TEXT -> {
+                                Log.i(LOG_TAG, code.rawValue)
+                                paymentRet = Api.processPayment(PaymentMethod.CHEQUE.value(), code.rawValue)
+                            }
+                            else -> {
+                                Log.i(LOG_TAG, code.rawValue)
+                                paymentRet = Api.processPayment(PaymentMethod.CHEQUE.value(), code.rawValue)
+                            }
                         }
                     }
                     if (barcodes.size() == 0) {
                         scanResults = "Scan Failed"
                     }
+
+                    if (paymentRet == "Refused") Payment.status = PaymentStatus.REFUSED.value()
+                    else if (paymentRet == "Authorized") Payment.status = PaymentStatus.AUTHORIZED.value()
+                    else Payment.status = PaymentStatus.PENDING.value()
+
                 } else {
                     scanResults = "Could not set up the Barcode detector!"
                 }

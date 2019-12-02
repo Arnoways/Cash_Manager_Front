@@ -266,4 +266,34 @@ object Api {
     }
      */
 
+
+    /***
+     * Payment
+     */
+    fun processPayment(method: String, value: String): String {
+        val url = serveurRoute + "/api/payment"
+        val payload = mapOf("method" to method)
+        var status: String = "Pending"
+
+        val r = Fuel
+            .post(url)
+            .authentication()
+            .bearer(token!!)
+            .jsonBody(payload.toString())
+            .response { request, response, result ->
+                println(request)
+                println(response)
+                val (bytes, error) = result
+                if (bytes != null) {
+                    val r = JSONObject(String(bytes))
+                    status = r.getString("payment_status")
+                }
+                if (error != null) {
+                    println(error)
+                }
+            }
+
+        return status
+    }
+
 }
