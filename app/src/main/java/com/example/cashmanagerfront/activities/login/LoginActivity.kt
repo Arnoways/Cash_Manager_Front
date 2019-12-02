@@ -75,6 +75,8 @@ class LoginActivity : AppCompatActivity() {
                     val bdd = BddDataSource(this)
                     bdd.generateProducts()
                 }
+                // create cart for user
+                Api.createCart(loginResult.success)
                 startActivity(Intent(this, ProductList::class.java))
             }
             setResult(Activity.RESULT_OK)

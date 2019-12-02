@@ -2,12 +2,14 @@ package com.example.cashmanagerfront.objects.api
 
 import com.example.cashmanagerfront.enums.PaymentStatus
 import com.example.cashmanagerfront.models.Product
+import com.example.cashmanagerfront.models.User
 import com.example.cashmanagerfront.objects.Cart
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.extensions.authentication
 import com.github.kittinunf.fuel.core.extensions.jsonBody
 import org.json.JSONArray
 import org.json.JSONObject
+import java.lang.reflect.Array
 
 object Api {
     val serveurRoute = "http://3.231.177.119:8080"
@@ -236,22 +238,23 @@ object Api {
      *
      */
 
-     fun postCart(cart: Cart) {
-
-        val url = serveurRoute + "/api/cart"
-        val payload = mapOf("cart" to cart)
+     fun createCart(user: User) {
+        val url = serveurRoute + "/api/" + user.userId + "/carts"
+        val payload = mapOf("product" to arrayOf<Product>(), "quantity" to 0, "total" to 0, "user" to user)
 
         val r = Fuel
             .post(url)
             .authentication()
             .bearer(token!!)
-            .jsonBody(payload.toString())
+            .jsonBody("{}")
             .response { request, response, result ->
                 println(request)
                 println(response)
                 val (bytes, error) = result
                 if (bytes != null) {
-                    println("[response bytes] ${String(bytes)}")
+                    val r = JSONObject(String(bytes))
+
+                    Cart.id = r.getInt("id")
                 }
                 if (error != null) {
                     println(error)

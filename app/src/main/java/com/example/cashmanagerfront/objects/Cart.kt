@@ -6,6 +6,7 @@ import com.example.cashmanagerfront.models.Product
 object Cart {
 
     val products: MutableList<Product> = mutableListOf()
+    var id: Int = 0
 
     /*
         Add a new product to our cart
