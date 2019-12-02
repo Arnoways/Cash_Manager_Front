@@ -99,6 +99,7 @@ class Payment : AppCompatActivity(), NfcAdapter.ReaderCallback {
         When an NFC tag is discovered
      */
     override fun onTagDiscovered(tag: Tag?) {
+
         val isoDep = IsoDep.get(tag)
         isoDep.connect()
         val response = isoDep.transceive(Utils.hexStringToByteArray(
@@ -186,27 +187,37 @@ class Payment : AppCompatActivity(), NfcAdapter.ReaderCallback {
                     val barcodes = detector!!.detect(frame)
                     var paymentRet: String = ""
                     Payment.method = PaymentMethod.CHEQUE.value()
-                    for (index in 0 until barcodes.size()) {
-                        val code = barcodes.valueAt(index)
-                        scanResults = scanResults.toString() + code.displayValue
-                        val type = barcodes.valueAt(index).valueFormat
-                        when (type) {
-                            Barcode.CONTACT_INFO -> {
-                                Log.i(LOG_TAG, code.contactInfo.title)
-                                paymentRet = Api.processPayment(PaymentMethod.CHEQUE.value(), code.contactInfo.title)
-                            }
-                            Barcode.TEXT -> {
-                                Log.i(LOG_TAG, code.rawValue)
-                                paymentRet = Api.processPayment(PaymentMethod.CHEQUE.value(), code.rawValue)
-                            }
-                            else -> {
-                                Log.i(LOG_TAG, code.rawValue)
-                                paymentRet = Api.processPayment(PaymentMethod.CHEQUE.value(), code.rawValue)
-                            }
-                        }
-                    }
                     if (barcodes.size() == 0) {
                         scanResults = "Scan Failed"
+                    } else {
+                        for (index in 0 until barcodes.size()) {
+                            val code = barcodes.valueAt(index)
+                            scanResults = code.displayValue
+                            val type = barcodes.valueAt(index).valueFormat
+                            when (type) {
+                                Barcode.CONTACT_INFO -> {
+                                    Log.i(LOG_TAG, code.contactInfo.title)
+                                    paymentRet = Api.processPayment(
+                                        PaymentMethod.CHEQUE.value(),
+                                        code.contactInfo.title
+                                    )
+                                }
+                                Barcode.TEXT -> {
+                                    Log.i(LOG_TAG, code.rawValue)
+                                    paymentRet = Api.processPayment(
+                                        PaymentMethod.CHEQUE.value(),
+                                        code.rawValue
+                                    )
+                                }
+                                else -> {
+                                    Log.i(LOG_TAG, code.rawValue)
+                                    paymentRet = Api.processPayment(
+                                        PaymentMethod.CHEQUE.value(),
+                                        code.rawValue
+                                    )
+                                }
+                            }
+                        }
                     }
 
                     if (paymentRet == "Refused") Payment.status = PaymentStatus.REFUSED.value()

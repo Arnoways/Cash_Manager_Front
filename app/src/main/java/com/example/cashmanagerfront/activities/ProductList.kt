@@ -67,6 +67,9 @@ class ProductList : AppCompatActivity() {
             // add event listener to buttons
             addButton.setOnClickListener {
                 var ret = Cart.add(product)
+                // call api add product to cart
+
+
                 if (ret == true) {
                     quantityView.setText((quantityView.getText().toString().toInt() + 1).toString())
                     Toast.makeText(

@@ -71,8 +71,10 @@
 
     <ScrollView
         android:id="@+id/resumeCartScrollLayout"
-        android:layout_width="412dp"
+        android:layout_width="0dp"
         android:layout_height="286dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:scrollbarStyle="outsideOverlay"
         app:layout_constraintBottom_toTopOf="@id/resumeCartTableRowLayout1"
         app:layout_constraintEnd_toEndOf="parent"

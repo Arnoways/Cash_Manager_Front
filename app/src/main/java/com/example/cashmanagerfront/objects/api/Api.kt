@@ -1,5 +1,6 @@
 package com.example.cashmanagerfront.objects.api
 
+import com.example.cashmanagerfront.enums.PaymentStatus
 import com.example.cashmanagerfront.models.Product
 import com.example.cashmanagerfront.objects.Cart
 import com.github.kittinunf.fuel.Fuel
@@ -222,6 +223,8 @@ object Api {
                 }
             }
 
+        r.join()
+
         return product!!
     }
 
@@ -272,7 +275,7 @@ object Api {
      */
     fun processPayment(method: String, value: String): String {
         val url = serveurRoute + "/api/payment"
-        val payload = mapOf("method" to method)
+        val payload = mapOf("method" to method, "value" to value)
         var status: String = "Pending"
 
         val r = Fuel
@@ -290,8 +293,11 @@ object Api {
                 }
                 if (error != null) {
                     println(error)
+                    status = PaymentStatus.PENDING.value()
                 }
             }
+
+        r.join()
 
         return status
     }
