@@ -154,11 +154,12 @@ object Api {
 
         return ret
     }
+
     /*
         This function make a call to the server, get a JSONArray as response, and parse it to return a Mutable List of Products
      */
     fun getAllProducts(): MutableList<Product> {
-        var url = serveurRoute + "/api/products"
+        var url = serveurRoute + "/api/products/all"
         val productList: MutableList<Product> = mutableListOf()
 
         var r = Fuel
