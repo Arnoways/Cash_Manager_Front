@@ -75,7 +75,7 @@
                 android:layout_column="1"
                 android:layout_weight="1"
                 android:background="@color/colorPrimaryDark"
-                android:text="@string/label_product_quantity"
+                android:text="@string/label_product_price"
                 android:textColor="@color/textColorSecondary"
                 android:textSize="24sp" />
 

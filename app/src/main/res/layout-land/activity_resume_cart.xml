@@ -24,16 +24,13 @@
         style="@style/Widget.Cashback.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="16dp"
         android:background="@android:drawable/btn_default"
         android:padding="10dp"
         android:text="@string/action_back_products"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/resumeCartButtonEmpty"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/resumeCartButtonEmpty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/resumeCartScrollLayout"
         app:layout_constraintTop_toBottomOf="@id/resumeCartButtonPayment" />
 
     <com.google.android.material.button.MaterialButton
@@ -41,18 +38,14 @@
         style="@style/Widget.Cashback.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
         android:background="@android:drawable/btn_default"
         android:padding="10dp"
         android:text="@string/action_cart_empty"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.71"
-        app:layout_constraintStart_toEndOf="@+id/resumeCartButtonBack"
-        app:layout_constraintTop_toBottomOf="@+id/resumeCartButtonPayment" />
+        app:layout_constraintStart_toEndOf="@+id/resumeCartScrollLayout"
+        app:layout_constraintTop_toBottomOf="@+id/resumeCartButtonBack" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/resumeCartButtonPayment"
@@ -65,23 +58,20 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/resumeCartButtonBack"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/resumeCartScrollLayout"
         app:layout_constraintTop_toBottomOf="@+id/resumeCartTableRowLayout2"
         app:layout_constraintVertical_bias="0.8" />
 
     <ScrollView
         android:id="@+id/resumeCartScrollLayout"
-        android:layout_width="0dp"
+        android:layout_width="412dp"
         android:layout_height="286dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
         android:scrollbarStyle="outsideOverlay"
-        app:layout_constraintBottom_toTopOf="@id/resumeCartTableRowLayout1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/resumeCartLabelText"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@id/resumeCartLabelText">
 
         <LinearLayout
             android:id="@+id/resumeCartScrollLinearLayout"
@@ -92,18 +82,18 @@
 
     <TableRow
         android:id="@+id/resumeCartTableRowLayout1"
-        android:layout_width="346dp"
+        android:layout_width="250dp"
         android:layout_height="45dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/border"
         app:layout_constraintBottom_toTopOf="@id/resumeCartTableRowLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/resumeCartScrollLayout">
+        app:layout_constraintStart_toEndOf="@+id/resumeCartScrollLayout"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/resumeCartTableRow1TotalHTLabel"
-            android:layout_width="200dp"
+            android:layout_width="150dp"
             android:layout_height="match_parent"
             android:padding="7dp"
             android:text="@string/label_total_ht"
@@ -117,7 +107,7 @@
             android:clickable="false"
             android:ems="10"
             android:enabled="false"
-            android:gravity="center_horizontal|center_vertical"
+            android:gravity="center_horizontal"
             android:hint="0.0"
             android:inputType="numberDecimal"
             android:padding="7dp" />
@@ -126,20 +116,20 @@
 
     <TableRow
         android:id="@+id/resumeCartTableRowLayout2"
-        android:layout_width="346dp"
+        android:layout_width="250dp"
         android:layout_height="45dp"
+        android:layout_marginTop="-10dp"
         android:layout_marginBottom="9dp"
         android:background="@drawable/border"
         app:layout_constraintBottom_toTopOf="@id/resumeCartButtonPayment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/resumeCartScrollLayout"
         app:layout_constraintTop_toBottomOf="@+id/resumeCartTableRowLayout1"
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/resumeCartTableRow2TotalTTCLabel"
-            android:layout_width="200dp"
+            android:layout_width="150dp"
             android:layout_height="match_parent"
             android:padding="7dp"
             android:text="@string/label_total_ttc"

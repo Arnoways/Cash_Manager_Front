@@ -43,6 +43,11 @@
         <item name="backgroundTint">@color/colorSecondaryLight</item>
     </style>
 
+    <style name="Widget.Cashback.Button.Validation" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+        <item name="backgroundTint">@color/colorPrimaryDark</item>
+    </style>
+
     <style name="Widget.Cashback.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
