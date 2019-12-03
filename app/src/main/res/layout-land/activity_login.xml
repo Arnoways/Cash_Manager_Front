@@ -21,6 +21,29 @@
         android:padding="24dp"
         android:paddingTop="16dp">
 
+        <LinearLayout
+            android:id="@+id/serverLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/serverTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Server ip :"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/serverIpSelect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </Spinner>
+        </LinearLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/usernameLayout"
             style="@style/Widget.Cashback.TextInputLayout"

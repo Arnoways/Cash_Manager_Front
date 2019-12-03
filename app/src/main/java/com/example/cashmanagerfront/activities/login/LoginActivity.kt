@@ -13,23 +13,20 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.Toast
+import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.developers.cashback.MainActivity
 import com.example.cashmanagerfront.activities.ProductList
 
 import com.example.cashmanagerfront.R
 import com.example.cashmanagerfront.data.BddDataSource
 import com.example.cashmanagerfront.objects.api.Api
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     private lateinit var loginViewModel: LoginViewModel
     private val REQUEST_WRITE_PERMISSION = 20
+    var serverIp: String? = "3.231.177.119"
 
     companion object {
         val PERMISSIONS_REQUEST_CAMERA = 1
@@ -45,6 +42,22 @@ class LoginActivity : AppCompatActivity() {
         val login = findViewById<Button>(R.id.login)
         val loading = findViewById<ProgressBar>(R.id.loading)
 
+        val spinner: Spinner = findViewById(R.id.serverIpSelect)
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.servers_array,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            spinner.adapter = adapter
+        }
+        spinner.onItemSelectedListener = this
+        spinner.isSelected = true
+
+
         loginViewModel = ViewModelProviders.of(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
 
@@ -59,6 +72,9 @@ class LoginActivity : AppCompatActivity() {
             }
             if (loginState.passwordError != null) {
                 password.error = getString(loginState.passwordError)
+            }
+            if (loginState.serverError != null) {
+                password.error = getString(loginState.serverError)
             }
         })
 
@@ -85,7 +101,8 @@ class LoginActivity : AppCompatActivity() {
         email.afterTextChanged {
             loginViewModel.loginDataChanged(
                 email.text.toString(),
-                password.text.toString()
+                password.text.toString(),
+                serverIp.toString()
             )
         }
 
@@ -93,7 +110,8 @@ class LoginActivity : AppCompatActivity() {
             afterTextChanged {
                 loginViewModel.loginDataChanged(
                     email.text.toString(),
-                    password.text.toString()
+                    password.text.toString(),
+                    serverIp.toString()
                 )
             }
 
@@ -133,6 +151,17 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+        // An item was selected. You can retrieve the selected item using
+        val item = parent.getItemAtPosition(pos)
+        serverIp = item.toString()
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>) {
+        // Another interface callback
+    }
+
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         when (requestCode) {

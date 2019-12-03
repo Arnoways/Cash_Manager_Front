@@ -31,11 +31,13 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
         }
     }
 
-    fun loginDataChanged(username: String, password: String) {
+    fun loginDataChanged(username: String, password: String, server: String) {
         if (!isUserNameValid(username)) {
             _loginForm.value = LoginFormState(emailError = R.string.invalid_username)
         } else if (!isPasswordValid(password)) {
             _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
+        } else if (!isServerSelected(server)){
+            _loginForm.value = LoginFormState(isDataValid = true)
         } else {
             _loginForm.value = LoginFormState(isDataValid = true)
         }
@@ -53,5 +55,9 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     // A placeholder password validation check
     private fun isPasswordValid(password: String): Boolean {
         return password.length > 5
+    }
+
+    private fun isServerSelected(server: String): Boolean {
+        return server.isNotBlank()
     }
 }

@@ -24,6 +24,8 @@ class LoginDataSource {
 
     fun logout() {
         // TODO: revoke authentication
+        Api.token = null
+        this.logout()
     }
 }
 

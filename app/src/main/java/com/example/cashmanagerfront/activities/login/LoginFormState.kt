@@ -6,5 +6,6 @@ package com.example.cashmanagerfront.activities.login
 data class LoginFormState(
     val emailError: Int? = null,
     val passwordError: Int? = null,
+    val serverError: Int? = null,
     val isDataValid: Boolean = false
 )
